@@ -1,0 +1,102 @@
+#pragma once
+
+namespace CppCLRWinFormsProject {
+
+	using namespace System;
+	using namespace System::ComponentModel;
+	using namespace System::Collections;
+	using namespace System::Windows::Forms;
+	using namespace System::Data;
+	using namespace System::Drawing;
+
+	/// <summary>
+	/// Summary for Form1
+	/// </summary>
+	public ref class Form1 : public System::Windows::Forms::Form
+	{
+	public:
+		Form1(void)
+		{
+			InitializeComponent();
+			//
+			//TODO: Add the constructor code here
+			//
+		}
+
+	protected:
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		~Form1()
+		{
+			if (components)
+			{
+				delete components;
+			}
+		}
+	private: System::Windows::Forms::Button^  buttonTalk;
+	protected:
+	private: System::Windows::Forms::Label^  labelResponse;
+
+	private:
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		System::ComponentModel::Container ^components;
+
+#pragma region Windows Form Designer generated code
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		void InitializeComponent(void)
+		{
+			this->components = (gcnew System::ComponentModel::Container());
+			this->buttonTalk = (gcnew System::Windows::Forms::Button());
+			this->labelResponse = (gcnew System::Windows::Forms::Label());
+			this->SuspendLayout();
+			// 
+			// buttonTalk
+			// 
+			this->buttonTalk->Location = System::Drawing::Point(90, 50);
+			this->buttonTalk->Name = L"buttonTalk";
+			this->buttonTalk->Size = System::Drawing::Size(120, 23);
+			this->buttonTalk->TabIndex = 0;
+			this->buttonTalk->Text = L"Talk to me";
+			this->buttonTalk->UseVisualStyleBackColor = true;
+			this->buttonTalk->Click += gcnew System::EventHandler(this, &Form1::buttonTalk_Click);
+			// 
+			// labelResponse
+			// 
+			this->labelResponse->AutoSize = true;
+			this->labelResponse->Location = System::Drawing::Point(90, 100);
+			this->labelResponse->Name = L"labelResponse";
+			this->labelResponse->Size = System::Drawing::Size(35, 13);
+			this->labelResponse->TabIndex = 1;
+			this->labelResponse->Text = L"label1";
+			// 
+			// Form1
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->ClientSize = System::Drawing::Size(300, 200);
+			this->Controls->Add(this->labelResponse);
+			this->Controls->Add(this->buttonTalk);
+			this->Name = L"Form1";
+			this->Text = L"Talk to Me";
+			this->ResumeLayout(false);
+			this->PerformLayout();
+
+		}
+#pragma endregion
+	private: System::Void buttonTalk_Click(System::Object^  sender, System::EventArgs^  e) {
+		// Array of pre-defined phrases
+		array<String^>^ phrases = { "Hello!", "How are you?", "Nice to meet you!" };
+		// Generate a random index
+		Random^ rand = gcnew Random();
+		int index = rand->Next(phrases->Length);
+		// Display the selected phrase
+		labelResponse->Text = phrases[index];
+	}
+	};
+}
